@@ -1,0 +1,131 @@
+@import 'variables';
+
+.header-container{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    height: $header-height;
+
+    .logo{
+        margin: 0 2rem;
+    }
+
+    .search-box-wrapper{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+
+        .search-box{
+            background-color: $light;
+            position: relative;
+            width: 22rem;
+            height: 3.4rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+
+            .search-input{
+                width: 85%;
+                margin-left: 0;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                padding-right: 0;
+            }
+
+            .search-icon{
+                position: absolute;
+                fill: $secondary-color;
+                right: 1rem;
+            }
+        }        
+    }
+
+    .new-project{
+        margin: 0 3rem;
+    }
+
+    .notification{
+        position: relative;
+        width: 5rem;
+
+        .notification-icon{
+            fill: $secondary-color;
+        }
+
+        .notification-bullet{
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: $red;
+            border-radius: 50%;
+            top: -.4rem;
+            right: 3.3rem;
+        }
+    }
+
+    .user-section{
+        width: 13rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 1rem;
+
+        .avatar{
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            object-fit: cover;
+        }
+
+        .user-data{
+            margin: 0 .5rem;
+            font-size: 0.9em;
+        }
+
+        .arrow{
+            fill: $secondary-color;
+            cursor: pointer;
+        }
+
+        .profile-menu{
+            position: absolute;
+            background-color: #fff;
+            padding: .5rem;
+            top: calc($header-height - .5rem);
+            list-style-type: none;
+            border-radius: .5rem;
+            --clip: polygon(0 0, 100% 0, 100% 0, 0 0);
+            
+            clip-path: var(--clip);
+            transition: $transition;
+            
+            .menu-item{
+                padding: 1rem;  
+                border-bottom: 1px solid $background;                      
+                transition: color .4s ease-in-out, background-color .4s ease-in-out;
+
+                &:hover{
+                    cursor: pointer;
+                    color: $primary-color;
+                    background-color: $light;  
+                }
+            }
+
+            li:last-child{
+                border: none;
+            }           
+            
+        }
+
+        .profile-menu--show{
+            --clip: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    }
+    
+}
+

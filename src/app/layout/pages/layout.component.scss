@@ -1,0 +1,10 @@
+@import 'variables';
+
+.body{
+    margin-top: $header-height;
+    min-height: calc(100vh - $header-height);
+    margin-left: $menu-width;
+    width: calc(100% - $menu-width);
+    background-color: $background;
+    padding: 1rem 2rem; 
+}

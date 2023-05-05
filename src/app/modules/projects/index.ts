@@ -1,0 +1,6 @@
+export { ProjectsComponent } from '@modules/projects/pages/projects/projects.component'
+export { ProjectComponent } from '@modules/projects/components/project/project.component'
+export { Project } from '@modules/projects/interfaces/project.interface'
+export { ProjectsRoutingModule } from '@modules/projects/projects-routing.module'
+export { ProjectsService } from '@modules/projects/services/projects.service'
+export { ProjectsModule } from '@modules/projects/projects.module'

@@ -9,7 +9,8 @@
       "@modules/*": ["app/modules/*"],
       "@env/*": ["environments/*"],
       "@layout/*": ["app/layout/*"],
-      "@data/*": ["app/data/*"]
+      "@data/*": ["app/data/*"],
+      "@store/*": ["app/store/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

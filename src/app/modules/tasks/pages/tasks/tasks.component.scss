@@ -1,0 +1,252 @@
+@import 'variables';
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .container-header{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .add-task{
+            .rect1{
+                fill: $primary-color;
+                transition: fill $transition;
+            }
+
+            .rect2,
+            .rect3{
+                fill: #fff;
+                transition: fill $transition;
+            }
+        }
+
+        .add-task:hover{
+            cursor: pointer;
+        }
+
+        .add-task:hover .rect1{
+            fill: #fff;
+        }
+
+        .add-task:hover .rect2,
+        .add-task:hover .rect3{
+            fill: $primary-color;
+        }
+    }
+
+    .header{
+        background-color: #fff;
+        color: $secondary-color;
+        border-radius: .25rem;
+        font-size: 0.9em;
+
+        .header-cell{
+            padding: .75rem 0 .75rem .15rem;
+            border-right: 1px solid $light-gray;
+        }
+
+        .number{
+            text-align: right;
+            padding-right: .5rem;
+        }
+    }
+
+    .row{
+        display: grid;
+        background-color: #fff;
+        grid-template-columns: 1fr 9fr 3fr 3fr 4fr 2fr;
+
+        .td,
+        .th{
+            padding: .5rem 0 .5rem .15rem;
+            border-right: 1px solid $light-gray;            
+        }
+
+        .th.number,
+        .td.number{
+            text-align: center;
+        }
+
+        .th.number,
+        .th.name{
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+
+        .th.name{
+            .number{
+                font-size: 0.7em;
+                color: $secondary-color;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .table{
+        border-radius: .25rem;
+        overflow: hidden;
+
+        .row{
+            border-bottom: 1px solid $light-gray;
+
+            .td{
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .td.number{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .td.name{
+                .comments{
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                }
+
+                .text{
+                    font-size: 0.9em;
+                }
+
+                .completed{
+                    circle{
+                        fill: $green;
+                        transition: fill $transition;
+                    }
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
+                .completed:hover circle{
+                    fill: $primary-color;
+                }
+
+                .completed{
+                    color: $secondary-color;
+                }
+
+                .uncompleted{
+                    path{
+                        fill: $secondary-color;
+                        transition: fill $transition;
+                    }
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
+                .uncompleted:hover path{
+                    fill: $primary-color;
+                }
+            }
+
+            .td.tags{
+                .tag{
+                    width: 5rem;
+                    height: 2rem;
+                    color: $green;
+                    background-color: $light-green;
+                    font-size: 0.8em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .rest{
+                    border: 1px solid $light-gray;
+                    border-radius: .25rem;
+                    height: 2rem;
+                    width: 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .td.assigned{
+                .avatar{
+                    width: 2rem;
+                    height: 2rem;
+                    background-color: green;
+                    border-radius: 50%;
+                }
+            }
+
+            .add{
+                font-size: 0.9em;
+                color: $secondary-color;
+                transition: color $transition;
+
+                &:hover{
+                    color: $text-primary;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    // .table{
+    //     background-color: #fff;
+    //     border-radius: .25rem;
+
+    //     .row{
+    //         border-bottom: 1px solid $light-gray;
+    //     }
+    // }
+
+    // .header{
+    //     background-color: #fff;
+    //     color: $secondary-color;
+    //     border-radius: .25rem;
+    //     font-size: 0.9em;
+
+    //     .number{
+    //         text-align: right;
+    //         padding-right: .5rem;
+    //     }
+    // }
+
+    // .th{
+    //     font-weight: 600;
+    //     font-size: 1.2em;
+    //     border-right: 1px solid $light-gray;
+    // }
+
+    // .th.name{
+    //     display: flex;
+    //     align-items: center;
+
+    //     .number{
+    //         margin-left: 0.25rem;
+    //         font-size: 0.8em;
+    //         font-weight: normal;
+    //         color: $secondary-color;
+    //     }
+    // }
+
+    // .td.number,
+    // .th.number{
+    //     text-align: center;
+    // }
+
+    // .td{
+    //     border-right: 1px solid $light-gray;
+    //     padding: .75rem 0;
+    // }
+    
+    // .name{
+    //     display: flex;
+    //     gap: 0.5rem;       
+    // }
+}

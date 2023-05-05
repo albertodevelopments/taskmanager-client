@@ -1,0 +1,253 @@
+@import 'variables';
+
+.container{
+    width: 100%;
+    min-height: calc(100vh - $header-height - 2rem);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 0.25rem;
+
+    .contacts{
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: .25rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+
+            .text{
+                text-transform: uppercase;
+                color: $secondary-color;
+            }
+        }
+
+        .add{
+            circle{
+                fill: $blue;
+                transition: fill $transition;
+
+                &:hover{
+                    fill: $blue2;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .contacts-list{            
+            .card{
+                background-color: $light-blue;
+                border-radius: .5rem;
+                margin-bottom: 0.75rem;
+                padding: 1rem;
+                display: flex;
+                gap: 1rem;
+
+                .avatar{
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    background-color: $blue;
+                }
+
+                .body{
+                    flex: 1;
+
+                    .name{
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .last-message{
+                        font-size: 0.8em;
+                        color: $secondary-color;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .date-time{
+                    color: $secondary-color;
+                    font-size: 0.7em;
+                }
+            }
+        }
+    }
+
+    .messages-area{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .header{
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: .25rem;
+            margin-bottom: 0.25rem;
+            background-color: #fff;
+
+            .avatar{
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+                background-color: $blue;
+            }
+
+            
+            .current-employee{
+                .name{
+                    font-weight: 600;
+                }
+
+                .typing{
+                    font-size: 0.8em;
+                    color: $secondary-color;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .conversation-area{
+            background-color: #fff;
+            border-radius: .25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            .header{
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+                font-size: 0.9em;
+                font-weight: 400;
+                color: $secondary-color;
+            }
+
+            .messages-area{
+
+                .me,
+                .other{
+                    padding: 1rem;
+                    display: flex;
+                    gap: 1rem;
+
+                    .avatar{
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        border-radius: 50%;
+                        background-color: $blue;
+                    }
+
+                    .messages{                    
+                        flex: 1;
+
+                        .message{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            margin-bottom: 0.5rem;
+
+                            .text{
+                                display: inline;
+                                padding: 1rem;
+                                background-color: $light-blue;
+                                border-radius: 1.25rem;
+                                margin-bottom: 0.35rem;
+                            }
+
+                            .time{
+                                display: block;
+                                font-size: 0.8em;
+                                color: $secondary-color;
+                                margin-bottom: 1rem;
+                                margin-left: 1rem;
+                            }
+
+                            .images{
+                                display: flex;
+                                gap: 1rem;
+                                margin-bottom: 0.35rem;
+
+                                .image{
+                                    width: 8rem;
+                                    height: 8rem;
+                                    background-color: $blue;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .me{
+                    .messages{                    
+                        .message{
+                            align-items: flex-start;
+                        }
+                    }
+                }
+
+                .other{
+                    .messages{                    
+                        .message{
+                            align-items: flex-end;
+                        }
+                    }
+                }
+
+            }
+
+            .new-message{
+                padding: 1rem;
+                width: 100%;
+
+                .input-wrapper{
+                    position: relative;
+                    display: flex;
+                    width: 100%;
+                    padding: 1rem;
+                    background-color: $light-blue;
+                    border-radius: 1.25rem;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .avatar{
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        border-radius: 50%;
+                        background-color: $blue;
+                    }
+
+                    .text{
+                        flex: 1;
+                        height: 2rem;
+                        background-color: transparent;
+                        border: none;
+                        font-size: 0.9em;
+                        color: $secondary-color;
+
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+
+                    .emoji{
+                        position: absolute;
+                        top: 38%;
+                        right: 5%;
+                    }
+
+                    .link{
+                        position: absolute;
+                        top: 33%;
+                        right: 2%;
+                    }
+                }
+            }
+        }
+    }
+}

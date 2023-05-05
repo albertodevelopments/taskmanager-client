@@ -1,0 +1,117 @@
+<div class="container">
+    <form 
+        [formGroup]="projectForm"
+        class="project-form"
+        [ngClass]="{'project-form--hide': closingWindow}"
+        (ngSubmit)="submitProject()"
+        >
+        <h2 class="title">{{ 'project.new.title.label' | translate }}</h2>
+        <div class="body">
+            <div class="input-group">                
+                <label for="name" class="input-label large">{{ 'project.name.label' | translate }}</label>
+                <input 
+                    [ngClass]="{'app-input--error': (name.dirty || name.touched) && name.invalid}"
+                    formControlName="name"
+                    [placeholder]="'project.name.placeholder' | translate"
+                    type="text" 
+                    class="app-input large">
+                <small class="error-message" *ngIf="(name.dirty || name.touched) && name.invalid">{{ 'project.name.required' | translate }}</small>
+            </div>
+            <div class="input-group">
+                <label for="description" class="input-label large">{{ 'project.description.label' | translate }}</label>
+                <textarea 
+                    id="description"
+                    [ngClass]="{'app-input--error': (description.dirty || description.touched) && description.invalid}"
+                    formControlName="description"
+                    rows="5"
+                    [placeholder]="'project.description.placeholder' | translate"
+                    class="app-textarea large"
+                ></textarea>
+                <small class="error-message" *ngIf="(description.dirty || description.touched) && description.invalid">{{ 'project.description.required' | translate }}</small>
+            </div>      
+            <div class="tag-group">
+                <select 
+                    formControlName="tag1Text"
+                    placeholder="Enter tag description"
+                    class="app-select large"
+                    (change)="changeTags()"
+                    >
+                    <option 
+                        *ngFor="let tag of tags1"                        
+                        [value]="tag.id"
+                        >{{ tag.name }}</option>
+                </select>
+                <svg *ngIf="tag1Text.invalid"
+                     class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
+                    <rect class='rect1' width="37" height="37" rx="9" />
+                    <rect class='rect2' x="18" y="11" width="2" height="15"/>
+                    <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
+                </svg>    
+                <svg *ngIf="!tag1Text.invalid"
+                     class='add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg"
+                     (click)="showTag2()">
+                    <rect class='rect1' width="37" height="37" rx="9" />
+                    <rect class='rect2' x="18" y="11" width="2" height="15"/>
+                    <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
+                </svg>  
+            </div>
+            <div class="tag-group" *ngIf="tag2Shown">
+                <select 
+                    formControlName="tag2Text"
+                    placeholder="Enter tag description"
+                    name="language" 
+                    class="app-select large"
+                    (change)="changeTags()"
+                    >
+                    <option 
+                        *ngFor="let tag of tags2"
+                        [value]="tag.id"
+                        >{{ tag.name }}</option>
+                </select>
+                <svg *ngIf="tag2Text.invalid"
+                    class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
+                   <rect class='rect1' width="37" height="37" rx="9" />
+                   <rect class='rect2' x="18" y="11" width="2" height="15"/>
+                   <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
+               </svg>    
+               <svg *ngIf="!tag2Text.invalid"
+                    class='add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg"
+                    (click)="showTag3()">
+                   <rect class='rect1' width="37" height="37" rx="9" />
+                   <rect class='rect2' x="18" y="11" width="2" height="15"/>
+                   <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
+               </svg>  
+            </div>
+            <div class="tag-group" *ngIf="tag3Shown">
+                <select 
+                    formControlName="tag3Text"
+                    placeholder="Enter tag description"
+                    name="language" 
+                    class="app-select large"
+                    (change)="changeTags()"
+                    >
+                    <option 
+                        *ngFor="let tag of tags3"
+                        [value]="tag.id"
+                        >{{ tag.name }}</option>
+                </select>           
+                <svg class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
+                    <rect class='rect1' width="37" height="37" rx="9" />
+                    <rect class='rect2' x="18" y="11" width="2" height="15"/>
+                    <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
+                </svg>    
+            </div>
+        </div>
+        <div class="footer">
+            <button 
+                type="submit"
+                [disabled]="!projectForm.valid"
+                class="btn btn-primary half">{{ 'project.button.save' | translate }}</button>
+            <button                     
+                type="button" 
+                class="btn btn-secondary half"
+                (click)="closeWindow()"
+                >{{ 'project.button.cancel' | translate }}</button>
+        </div>
+    </form>
+</div>

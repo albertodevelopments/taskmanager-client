@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="container">
+    <div class="wrapper">
+        <div class="image-container">
+            <img src="assets/img/app-image.png" alt="App image" class="app-image">
+        </div>
+        <div 
+            class="login-box">    
+            <div class="header">
+                <!-- <div class="select-wrapper">
+                    <select class="app-select language" (change)="selectLanguage($event)">
+                        <option value="en">{{ 'label.language.english' | translate }}</option>
+                        <option value="es">{{ 'label.language.spanish' | translate }}</option>
+                    </select>
+                </div> -->
+                <a class="signin" (click)="showSignin()">{{ 'login.signin.button' | translate }}<span class="line"></span></a>
+                <a class="register" (click)="showRegister()">{{ 'login.signup.button' | translate }}</a>
+            </div>
+            <app-signin 
+                (sendMessage)="showSignInNotification($event)"
+                *ngIf="view === 'L'"></app-signin>            
+            <app-signup 
+                (sendMessage)="showRegisterNotification($event)"
+                *ngIf="view === 'R'"></app-signup>
+        </div>
+    </div>
+</div>
+<p-toast></p-toast>

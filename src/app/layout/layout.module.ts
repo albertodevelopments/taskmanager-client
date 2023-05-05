@@ -1,24 +1,31 @@
 /** Angular core */
 import { NgModule } from '@angular/core'
-import { LayoutRoutingModule } from './layout-routing.module'
 
 /** App imports */
-import { LayoutComponent } from '@layout/pages/layout.component'
-import { HeaderComponent } from './components/header/header.component'
-import { FooterComponent } from './components/footer/footer.component'
-import { MenuComponent } from './components/menu/menu.component'
-import { SharedModule } from '@shared/shared.module'
+import { LayoutRoutingModule } from './layout-routing.module'
+import { LayoutComponent, HeaderComponent, MenuComponent, ProfileComponent } from '@layout/index'
+import { SharedModule } from '@shared/index'
+import { DashboardModule } from '@modules/dashboard'
+import { ProjectsModule } from '@modules/projects'
+import { TasksModule } from '@modules/tasks'
+import { ActivityModule } from '@modules/activity'
+import { MessagesModule } from '@modules/messages';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    FooterComponent,
-    MenuComponent
+    MenuComponent,
+    ProfileComponent,
   ],
   imports: [
     SharedModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    DashboardModule,
+    ProjectsModule,
+    TasksModule,
+    ActivityModule,
+    MessagesModule
   ]
 })
 export class LayoutModule { }

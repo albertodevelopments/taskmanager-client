@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "micompra": {
+    "taskdashboard": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/micompra",
+            "outputPath": "dist/taskdashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -30,9 +30,16 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/scss/_variables.scss",
               "src/styles.scss",
-              "src/assets/scss/styles.scss"
+              "src/assets/scss/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths":["src/assets/scss"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -57,7 +64,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -66,18 +79,21 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "micompra:build:production"
+              "browserTarget": "taskdashboard:build:production"
             },
             "development": {
-              "browserTarget": "micompra:build:development"
+              "browserTarget": "taskdashboard:build:development"
             }
+          },
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "micompra:build"
+            "browserTarget": "taskdashboard:build"
           }
         },
         "test": {

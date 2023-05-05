@@ -1,0 +1,48 @@
+<div class="form-container">
+    <form 
+        (ngSubmit)="login()"
+        class="form" 
+        [formGroup]="signInForm">
+        <div class="input-group large">
+            <input 
+                formControlName="email"
+                type="text" 
+                class="app-input large" 
+                [ngClass]="{'app-input--error': (email.dirty || email.touched) && email.invalid}"
+                placeholder="{{'signin.email.placeholder' | translate }}">
+            <small *ngIf="(email.dirty || email.touched) && email.errors?.['required']" class="error-message">{{ 'signin.error.email.required' | translate }}</small>
+        </div>
+        <div class="input-group large">
+            <input 
+                formControlName="password"
+                type="password" 
+                class="app-input large" 
+                [ngClass]="{'app-input--error': (password.dirty || password.touched) && password.invalid }"
+                placeholder="{{'signin.password.placeholder' | translate }}">
+            <small *ngIf="(password.dirty || password.touched) && password.errors?.['required']" class="error-message">{{ 'signin.error.password.required' | translate }}</small>
+        </div>
+        <small class="recover">{{ 'signin.recover' | translate }}</small>
+        <button 
+            [disabled]="!signInForm.valid"
+            type="submit" 
+            class="btn btn-primary">{{ 'signin.submit.button' | translate}}</button>
+        <div class="footer">
+            <div class="continue">
+                <span class="line"></span>
+                <span class="text">Or continue with</span>
+                <span class="line"></span>
+            </div>
+            <div class="signin-actions">
+                <button class="signin-btn google-btn">
+                    <img class='signin-icon' src="assets/img/google.png" alt="Google">
+                </button>
+                <button class="signin-btn apple-btn">
+                    <img class='signin-icon' src="assets/img/apple.png" alt="Apple">
+                </button>
+                <button class="signin-btn fb-btn">
+                    <img class='signin-icon' src="assets/img/facebook.png" alt="Facebook">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

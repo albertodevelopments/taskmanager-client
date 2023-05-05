@@ -1,6 +1,8 @@
 <app-header></app-header>
-<app-menu></app-menu>
-<router-outlet>
-    <p>layout works!</p>
-</router-outlet>
-<app-footer></app-footer>
+<app-menu
+    [currentPage]="currentPage"
+    (selectMenuOption)="menuOption($event)"
+></app-menu>
+<div class="body">
+    <router-outlet></router-outlet>
+</div>

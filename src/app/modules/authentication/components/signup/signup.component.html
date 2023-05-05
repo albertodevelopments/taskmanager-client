@@ -1,0 +1,104 @@
+<div class="form-container">
+    <form 
+        class="form" 
+        [formGroup]="registerForm"
+        (ngSubmit)="register()">
+        <div class="input-group large">
+            <input 
+                formControlName="name"
+                type="text" 
+                class="app-input  large" 
+                [ngClass]="{'app-input--error': (name.dirty || name.touched) && name.invalid}"
+                placeholder="{{'register.name.placeholder' | translate}}">
+            <small *ngIf="(name.dirty || name.touched) && name.errors?.['required']" class="error-message">{{ 'register.error.name.required' | translate }}</small>
+        </div>
+        <div class="input-group large">
+            <input 
+                formControlName="email"
+                type="text" 
+                class="app-input  large" 
+                [ngClass]="{'app-input--error': (email.dirty || email.touched) && email.invalid}"
+                placeholder="{{'register.email.placeholder' | translate}}">
+            <small *ngIf="(email.dirty || email.touched) && email.errors?.['required']" class="error-message">{{ 'register.error.email.required' | translate }}</small>
+            <small *ngIf="!email.errors?.['required'] && (email.dirty || email.touched) && email.errors?.['email']" class="error-message">{{ 'register.error.email.valid' | translate }}</small>
+        </div>
+        <div class="input-group large">
+            <input 
+                formControlName="password"
+                type="password" 
+                class="app-input  large" 
+                [ngClass]="{'app-input--error': (password.dirty || password.touched) && password.invalid}"
+                placeholder="{{'register.password.placeholder' | translate}}">
+                <small *ngIf="(password.dirty || password.touched) && password.errors?.['required']" class="error-message">{{ 'register.error.password.required' | translate }}</small>
+                <small *ngIf="!password.errors?.['required'] && (password.dirty || password.touched) && password.errors?.['minlength']" class="error-message">{{ 'register.error.password.min.length' | translate }}</small>
+        </div>
+        <div class="input-group large">
+            <input 
+                formControlName="confirmPassword"
+                type="password" 
+                class="app-input  large" 
+                [ngClass]="{'app-input--error': (confirmPassword.dirty || confirmPassword.touched) && 
+                                                (confirmPassword.invalid || registerForm.errors?.['passwordsMustMatch'])}"
+                placeholder="{{'register.confirm.password.placeholder' | translate}}">
+                <small *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.errors?.['required']" class="error-message">{{ 'register.error.confirm.password.required' | translate }}</small>
+                <small *ngIf="!confirmPassword.errors?.['required'] && (confirmPassword.dirty || confirmPassword.touched) && registerForm.errors?.['passwordsMustMatch']" class="error-message">{{ 'register.error.password.not.match' | translate }}</small>
+        </div>
+        <div class="input-group large">
+            <input 
+                formControlName="job"
+                type="text" 
+                class="app-input large" 
+                [ngClass]="{'app-input--error': (job.dirty || job.touched) && job.invalid}"
+                placeholder="{{'register.job.placeholder' | translate}}">
+            <small *ngIf="(job.dirty || job.touched) && job.errors?.['required']" class="error-message">{{ 'register.error.job.required' | translate }}</small>
+        </div>
+        <div class="selects large">
+            <div class="input-group large">
+                <label for="genre" class="select-label">{{ 'register.genre.label' | translate }}</label>
+                <select 
+                    id="genre"
+                    formControlName="genre" 
+                    class="app-select select large"
+                    [ngClass]="{'genre--error': (genre.dirty || genre.touched) && genre.invalid}">
+                    <option value="male">{{ 'register.genre.male' | translate }}</option>
+                    <option value="femal">{{ 'register.genre.female' | translate }}</option>
+                </select>
+                <small *ngIf="(genre.dirty || genre.touched) && genre.errors?.['required']" class="error-message">{{ 'register.error.genre.required' | translate }}</small>
+            </div>        
+            <div class="input-group large">
+                <label for="language" class="select-label">{{ 'register.language.label' | translate }}</label>
+                <select 
+                    id="language"
+                    formControlName="language" 
+                    class="app-select select large"
+                    [ngClass]="{'select--error': (language.dirty || language.touched) && language.invalid}">
+                    <option value="en">{{ 'label.language.english' | translate }}</option>
+                    <option value="es">{{ 'label.language.spanish' | translate }}</option>
+                </select>
+                <small *ngIf="(language.dirty || language.touched) && language.errors?.['required']" class="error-message">{{ 'register.error.language.required' | translate }}</small>
+            </div>  
+        </div>
+        <button 
+            type="submit"
+            class="btn btn-primary" 
+            [disabled]="!registerForm.valid">{{ 'register.submit.button' | translate}}</button>
+        <div class="footer">
+            <div class="continue">
+                <span class="line"></span>
+                <span class="text">{{ 'login.continue.with' | translate }}</span>
+                <span class="line"></span>
+            </div>
+            <div class="signup-actions">
+                <button class="signup-btn google-btn">
+                    <img class='signup-icon' src="assets/img/google.png" alt="Google">
+                </button>
+                <button class="signup-btn apple-btn">
+                    <img class='signup-icon' src="assets/img/apple.png" alt="Apple">
+                </button>
+                <button class="signup-btn fb-btn">
+                    <img class='signup-icon' src="assets/img/facebook.png" alt="Facebook">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

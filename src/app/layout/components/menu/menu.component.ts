@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+/** Angular core */
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Router } from '@angular/router'
+
+/** App imports */
+import { Pages } from '@layout/index'
 
 @Component({
   selector: 'app-menu',
@@ -7,4 +12,20 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  @Input() currentPage: number
+  @Output() selectMenuOption: EventEmitter<number>
+
+  protected PagesEnum = Pages
+  
+  constructor(
+    private router: Router
+  ){
+    this.selectMenuOption = new EventEmitter<number>()
+    this.currentPage = this.PagesEnum.PROJECTS
+    this.router.navigate(['layout/dashboard'])
+  }
+
+  selectOption(option: number): void{
+    this.selectMenuOption.emit(option)
+  }
 }

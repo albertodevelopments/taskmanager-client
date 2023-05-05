@@ -1,4 +1,7 @@
 export { LayoutComponent } from '@layout/pages/layout.component'
 export { HeaderComponent } from '@layout/components/header/header.component'
 export { MenuComponent } from '@layout/components/menu/menu.component'
-export { FooterComponent } from '@layout/components/footer/footer.component'
+export { ProfileComponent } from '@layout/components/profile/profile.component'
+export { LayoutService } from '@layout/services/layout.service'
+export { ProfileOutput } from '@layout/interfaces/profile-output.interface'
+export { Pages } from '@layout/enums/menu-pages'

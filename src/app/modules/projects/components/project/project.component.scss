@@ -1,0 +1,113 @@
+@import 'variables';
+
+.container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    
+    .project-form{
+        position: absolute;
+        width: 40%;
+        max-height: 90%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: .5rem;
+        padding: 1rem 2rem 2rem 2rem;
+        animation: show .6s ease-in-out forwards;        
+        transition: transform .4s ease-in-out;
+        --scale: scale(1);
+        transform: var(--scale);
+
+        .title{
+            font-weight: 600;
+            font-size: 1.4em;
+            border-bottom: 1px solid $background;
+            text-align-last: left;
+            padding-bottom: 1rem;
+        }
+
+        .body{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;   
+            
+            .tag-group{
+                display: flex;
+                gap: 1rem;
+
+                .tag-input{
+                    flex: 1;
+                }
+
+                .add-tag{
+                    .rect1{
+                        fill: $primary-color;
+                        transition: fill $transition;
+                    }
+        
+                    .rect2,
+                    .rect3{
+                        fill: #fff;
+                        transition: fill $transition;
+                    }
+                }
+
+                .add-tag:hover{
+                    cursor: pointer;
+                }
+        
+                .add-tag:hover .rect1{
+                    fill: #fff;
+                }
+        
+                .add-tag:hover .rect2,
+                .add-tag:hover .rect3{
+                    fill: $primary-color;
+                }
+
+                .disabled-add-tag{
+                    .rect1{
+                        fill: $secondary-color;
+                    }
+        
+                    .rect2,
+                    .rect3{
+                        fill: #fff;
+                    }
+
+                    &:hover{
+                        cursor: not-allowed;
+                    }
+                }                
+            }
+        }
+
+        .footer{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+    }
+
+    .project-form--hide{
+        --scale: scale(0);
+    }
+}
+
+@keyframes show{
+    0%{
+        margin-top: -100%;
+    }
+    100%{
+        margin-top: 0;
+    }
+}

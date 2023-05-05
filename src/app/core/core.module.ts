@@ -1,12 +1,16 @@
+/** Angular core */
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-
+/** App imports */
+import { SharedModule } from '@shared/index';
+import { SpinnerComponent } from '@core/index';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SpinnerComponent
+  ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 export class CoreModule { }

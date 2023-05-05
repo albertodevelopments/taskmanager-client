@@ -1,0 +1,83 @@
+@import 'variables';
+
+.container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+
+    .profile-form{
+        position: absolute;
+        width: 40%;
+        max-height: 90%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: .5rem;
+        padding: 1rem 2rem 2rem 2rem;
+        animation: show .6s ease-in-out forwards;        
+        transition: transform .4s ease-in-out;
+        --scale: scale(1);
+        transform: var(--scale);
+
+        .title{
+            font-weight: 600;
+            font-size: 1.4em;
+            border-bottom: 1px solid $background;
+            text-align-last: left;
+            padding-bottom: 1rem;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+
+            .avatar{
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                border: 2px solid $background;
+            }
+
+            .name{
+                font-size: 1.2em;
+            }
+        }
+
+        .body{
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer{
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    }
+
+    .profile-form--hide{
+        --scale: scale(0);
+    }
+}
+
+@keyframes show{
+    0%{
+        margin-top: -100%;
+    }
+    100%{
+        margin-top: 0;
+    }
+}

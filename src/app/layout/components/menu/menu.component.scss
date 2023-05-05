@@ -1,0 +1,41 @@
+@import 'variables';
+
+.menu-container{
+    position: fixed;
+    left: 0;
+    top: 4.5rem;
+    background-color: #fff;
+    height: calc(100% - 4.5rem);
+    width: 15.5rem;
+
+    .menu-list{
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 0 0 2rem;
+        gap: 1.6rem;
+        
+        .list-item{
+            display: flex;
+            color: $secondary-color;
+            align-items: center;
+            gap: 1rem;
+            height: 2.5rem;
+            cursor: pointer;
+            font-size: 0.9em;
+            
+            svg{
+                fill: $secondary-color;
+            }
+        }
+
+        .list-item--active{
+            color: $primary-color;
+            font-weight: 700;
+            border-right: 2px solid $primary-color;
+
+            svg{
+                fill: $primary-color;
+            }
+        }
+    }
+}
