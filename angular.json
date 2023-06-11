@@ -32,15 +32,18 @@
             "styles": [
               "src/assets/scss/_variables.scss",
               "src/styles.scss",
-              "src/assets/scss/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/assets/scss/styles.scss",
+              "src/assets/scss/primeng-override.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths":["src/assets/scss"]
             },
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/chart.js"
+            ]
           },
           "configurations": {
             "production": {

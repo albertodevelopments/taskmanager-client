@@ -21,3 +21,12 @@ export const userLoaded = createAction(
 )
 
 export const userLoadingFailed = createAction('[Register Page] User Loading Failed')
+
+export const updatingUser = createAction('[Signup Page] Updating User')
+
+export const userUpdated = createAction(
+    '[Signup Page] User Updated',
+    props<{ newProfile: ProfileState}>()
+)
+
+export const userUpdatingFailed = createAction('[Signup Page] User Updating Failed')

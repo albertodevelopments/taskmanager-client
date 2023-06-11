@@ -61,7 +61,7 @@
                     class="app-select select large"
                     [ngClass]="{'genre--error': (genre.dirty || genre.touched) && genre.invalid}">
                     <option value="male">{{ 'register.genre.male' | translate }}</option>
-                    <option value="femal">{{ 'register.genre.female' | translate }}</option>
+                    <option value="female">{{ 'register.genre.female' | translate }}</option>
                 </select>
                 <small *ngIf="(genre.dirty || genre.touched) && genre.errors?.['required']" class="error-message">{{ 'register.error.genre.required' | translate }}</small>
             </div>        
@@ -77,6 +77,17 @@
                 </select>
                 <small *ngIf="(language.dirty || language.touched) && language.errors?.['required']" class="error-message">{{ 'register.error.language.required' | translate }}</small>
             </div>  
+        </div>
+        <div class="large">
+            <label for="genre" class="select-label">{{ 'employee.label.team' | translate }}</label>
+            <select 
+                id="team"
+                formControlName="team" 
+                class="app-select select large"
+                [ngClass]="{'select--error': (team.dirty || team.touched) && team.invalid}">
+                <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
+            </select>
+            <small *ngIf="(team.dirty || team.touched) && team.errors?.['required']" class="error-message">{{ 'employee.error.team.required' | translate }}</small>
         </div>
         <button 
             type="submit"

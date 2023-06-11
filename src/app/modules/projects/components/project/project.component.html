@@ -17,6 +17,28 @@
                     class="app-input large">
                 <small class="error-message" *ngIf="(name.dirty || name.touched) && name.invalid">{{ 'project.name.required' | translate }}</small>
             </div>
+            <div class="dates">
+                <div class="input-group">  
+                    <label for="startDate" class="input-label large">{{ 'project.start.date.label' | translate }}</label>
+                    <p-calendar 
+                        id="startDate"
+                        formControlName="startDate"
+                        [ngClass]="{'app-input-calendar--error': (startDate.dirty || startDate.touched) && startDate.invalid}"
+                        [placeholder]="'project.start.date.placeholder' | translate"
+                        styleClass="large"
+                    ></p-calendar>
+                    <small class="error-message" *ngIf="(startDate.dirty || startDate.touched) && startDate.invalid">{{ 'project.start.date.required' | translate }}</small>
+                </div>              
+                <div class="input-group">  
+                    <label for="dueDate" class="input-label large">{{ 'project.due.date.label' | translate }}</label>
+                    <p-calendar 
+                        id="dueDate"
+                        formControlName="dueDate"
+                        [placeholder]="'project.due.date.placeholder' | translate"
+                        styleClass="large"
+                    ></p-calendar>
+                </div>
+            </div>
             <div class="input-group">
                 <label for="description" class="input-label large">{{ 'project.description.label' | translate }}</label>
                 <textarea 
@@ -29,10 +51,10 @@
                 ></textarea>
                 <small class="error-message" *ngIf="(description.dirty || description.touched) && description.invalid">{{ 'project.description.required' | translate }}</small>
             </div>      
-            <div class="tag-group">
+            <label class="input-label large">{{ 'project.tags.label' | translate }}</label>
+            <div class="tag-group">                
                 <select 
                     formControlName="tag1Text"
-                    placeholder="Enter tag description"
                     class="app-select large"
                     (change)="changeTags()"
                     >
@@ -41,13 +63,13 @@
                         [value]="tag.id"
                         >{{ tag.name }}</option>
                 </select>
-                <svg *ngIf="tag1Text.invalid"
+                <svg *ngIf="tag1Text.value === 0"
                      class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
                     <rect class='rect1' width="37" height="37" rx="9" />
                     <rect class='rect2' x="18" y="11" width="2" height="15"/>
                     <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
                 </svg>    
-                <svg *ngIf="!tag1Text.invalid"
+                <svg *ngIf="tag1Text.value !== 0"
                      class='add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg"
                      (click)="showTag2()">
                     <rect class='rect1' width="37" height="37" rx="9" />
@@ -58,7 +80,6 @@
             <div class="tag-group" *ngIf="tag2Shown">
                 <select 
                     formControlName="tag2Text"
-                    placeholder="Enter tag description"
                     name="language" 
                     class="app-select large"
                     (change)="changeTags()"
@@ -68,13 +89,13 @@
                         [value]="tag.id"
                         >{{ tag.name }}</option>
                 </select>
-                <svg *ngIf="tag2Text.invalid"
+                <svg *ngIf="tag2Text.value === 0"
                     class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
                    <rect class='rect1' width="37" height="37" rx="9" />
                    <rect class='rect2' x="18" y="11" width="2" height="15"/>
                    <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
                </svg>    
-               <svg *ngIf="!tag2Text.invalid"
+               <svg *ngIf="tag2Text.value !== 0"
                     class='add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg"
                     (click)="showTag3()">
                    <rect class='rect1' width="37" height="37" rx="9" />
@@ -85,7 +106,6 @@
             <div class="tag-group" *ngIf="tag3Shown">
                 <select 
                     formControlName="tag3Text"
-                    placeholder="Enter tag description"
                     name="language" 
                     class="app-select large"
                     (change)="changeTags()"
@@ -95,11 +115,6 @@
                         [value]="tag.id"
                         >{{ tag.name }}</option>
                 </select>           
-                <svg class='disabled-add-tag' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
-                    <rect class='rect1' width="37" height="37" rx="9" />
-                    <rect class='rect2' x="18" y="11" width="2" height="15"/>
-                    <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
-                </svg>    
             </div>
         </div>
         <div class="footer">

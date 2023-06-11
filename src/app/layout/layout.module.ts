@@ -26,6 +26,6 @@ import { MessagesModule } from '@modules/messages';
     TasksModule,
     ActivityModule,
     MessagesModule
-  ]
+  ],
 })
 export class LayoutModule { }

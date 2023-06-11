@@ -8,5 +8,8 @@ export interface Employee {
     points: number,
     rol: string,
     contacts: string[],
-    language: string
+    language: string,
+    team: number,
+    tasks: number,
+    startDate: Date
 }

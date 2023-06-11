@@ -1,5 +1,5 @@
 /** Angular core */
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { Observable, Subject, take } from 'rxjs'
 
 /** Estado global */
@@ -8,13 +8,14 @@ import { fromHeaderPageActions, fromProfilePageActions, fromProfileSelectors, fr
 
 /** App imports */
 import { TranslationPipe, TranslationService } from '@shared/index'
-import { ApiResponse, Employee, ProfileState } from '@core/index'
-import { LayoutService } from '@layout/index'
+import { ApiResponse, Employee, EmployeesService, ProfileState } from '@core/index'
 import { Project, ProjectsService } from '@modules/projects'
+
+/** Router */
+import { Router } from '@angular/router'
 
 /** Librerías */
 import { MessageService } from 'primeng/api'
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,8 @@ import { Router } from '@angular/router'
   providers: [MessageService, TranslationPipe]
 })
 export class HeaderComponent {
+
+  @Output() reloadProjects: EventEmitter<void> 
 
   protected username$: Observable<string>
   protected job$: Observable<string>
@@ -44,7 +47,7 @@ export class HeaderComponent {
     private store: Store,
     private messageService: MessageService,
     private translationPipe: TranslationPipe,
-    private layoutService: LayoutService,
+    private employeesService: EmployeesService,
     private router: Router,
     private translationService: TranslationService,
     private projectsService: ProjectsService
@@ -61,6 +64,7 @@ export class HeaderComponent {
     this.closingProfileWindow$ = this._closingProfileWindow.asObservable()
     this._closingProjectWindow = new Subject
     this.closingProjectWindow$ = this._closingProjectWindow.asObservable()
+    this.reloadProjects = new EventEmitter<void>()
   }
 
   toggleShowMenu(): void{
@@ -71,41 +75,62 @@ export class HeaderComponent {
     this.uid$
     .pipe(take(1))
     .subscribe(uid => {
-      this.loadEmployee(uid)
+      this.retrieveEmployee(uid)
     })
   }
 
-  loadEmployee(uid: string): void {
+  retrieveEmployee(uid: string): void {
     this.store.dispatch(fromProfilePageActions.loadingUser())
-    this.layoutService.getEmployee(uid).subscribe((response: ApiResponse) => {
-      if(response.status === 200){
-        const backendEmployee: any = response.message
-        this.currentEmployee = {
-          id: backendEmployee._id,
-          name: backendEmployee.name,
-          email: backendEmployee.email,
-          avatar: backendEmployee.avatar,
-          genre: backendEmployee.genre,
-          job: backendEmployee.job,
-          points: 0,
-          rol: backendEmployee.job,
-          contacts: [],
-          language: backendEmployee.language
+    this.employeesService.getEmployee(uid).subscribe({
+      next:  (response: ApiResponse) => {
+        if(response.status === 200){
+          this.loadEmployee(response)
+        }else{
+          this.showProfileError(response)
         }
-        const profile: ProfileState = {
-          name: this.currentEmployee.name,
-          job: this.currentEmployee.job,
-          uid: this.currentEmployee.id,
-          avatar: this.currentEmployee.avatar
+      },
+      error: () => {
+        const error: ApiResponse = {
+          status: 500,
+          message: 'global.error.500'
         }
-
-        this.profileWindowOpen = true
-        this.store.dispatch(fromSigninPageActions.userLoaded({newProfile: profile}))
-      }else{
-        this.showProfileError(response)
-        this.store.dispatch(fromSigninPageActions.userLoadingFailed())
+        this.showProfileError(error)
       }
     })
+  }
+
+  loadEmployee(response: ApiResponse){
+    if(response.status === 200){
+      const backendEmployee: any = response.message
+      this.currentEmployee = {
+        id: backendEmployee._id,
+        name: backendEmployee.name,
+        email: backendEmployee.email,
+        avatar: backendEmployee.avatar,
+        genre: backendEmployee.genre,
+        job: backendEmployee.job,
+        points: 0,
+        rol: backendEmployee.job,
+        contacts: [],
+        language: backendEmployee.language,
+        team: backendEmployee.team,
+        startDate: backendEmployee.startDate,
+        tasks: backendEmployee.tasks
+      }
+      const profile: ProfileState = {
+        name: this.currentEmployee.name,
+        job: this.currentEmployee.job,
+        uid: this.currentEmployee.id,
+        avatar: this.currentEmployee.avatar,
+        language: this.currentEmployee.language
+      }
+
+      this.profileWindowOpen = true
+      this.store.dispatch(fromSigninPageActions.userLoaded({newProfile: profile}))
+    }else{
+      this.showProfileError(response)
+      this.store.dispatch(fromSigninPageActions.userLoadingFailed())
+    }
   }
 
   closeProfileWindow(): void{
@@ -138,19 +163,30 @@ export class HeaderComponent {
       return
     }
 
-    this.layoutService.updateEmployee(employee).subscribe((response: ApiResponse) => {
-      if(response.status !== 200){
-        this.showProfileError(response)
-      }else{
-        const profile: ProfileState = {
-          name: employee.name,
-          job: employee.job,
-          uid: employee.id,
-          avatar: employee.avatar
+    this.employeesService.updateEmployee(employee).subscribe({
+      next: (response: ApiResponse) => {
+        if(response.status !== 200){
+          this.showProfileError(response)
+        }else{
+          const profile: ProfileState = {
+            name: employee.name,
+            job: employee.job,
+            uid: employee.id,
+            avatar: employee.avatar,
+            language: employee.language
+          }
+          this.store.dispatch(fromProfilePageActions.userUpdated({newProfile: profile}))
+          
+          /** Todo correcto, cerramos la ventana */        
+          this._closingProfileWindow.next()
         }
-        this.store.dispatch(fromProfilePageActions.userUpdated({newProfile: profile}))
-        /** Todo correcto, cerramos la ventana */
-        this._closingProfileWindow.next()
+      },
+      error: () => {
+        const error: ApiResponse = {
+          status: 500,
+          message: 'global.error.500'
+        }
+        this.showProfileError(error)
       }
     })
   }
@@ -162,12 +198,22 @@ export class HeaderComponent {
     try{
       await this.translationService.loadTranslationsSet(newEmployee.language)
 
-      this.layoutService.updateEmployee(newEmployee).subscribe((response: ApiResponse) => {
-        if(response.status !== 200){
-          this.showProfileError(response)
+      this.employeesService.updateEmployee(newEmployee).subscribe({
+        next: (response: ApiResponse) => {
+          if(response.status !== 200){
+            this.showProfileError(response)
+          }else{
+            this.router.navigate(['login'])
+          }
+        },
+        error: () => {
+          const error: ApiResponse = {
+            status: 500,
+            message: 'global.error.500'
+          }
+          this.showProfileError(error)
         }
       })
-      this.router.navigate(['login'])
     }catch(error){
       const apiResponse: ApiResponse = {
         'status': 500,
@@ -180,14 +226,28 @@ export class HeaderComponent {
 
   saveProject(project: Project): void{
     this.store.dispatch(fromProjectPageActions.creatingProject())
-    this.projectsService.saveProject(project).subscribe(response => {
-      if(response.status !== 200){
-        this.showProjectError(response)
-        this.store.dispatch(fromProjectPageActions.projectCreatingFailed())
-      }else{
-        this.showProjectSuccess(response)
-        this._closingProjectWindow.next()
-        this.store.dispatch(fromProjectPageActions.projectCreated())
+    this.projectsService.saveProject(project).subscribe({
+      next: response => {
+        if(response.status !== 200){
+          this.showProjectError(response)
+          this.store.dispatch(fromProjectPageActions.projectCreatingFailed())
+        }else{
+          this.showProjectSuccess(response)
+          this._closingProjectWindow.next()
+          this.store.dispatch(fromProjectPageActions.projectCreated())
+  
+          /** Mandamos aviso al padre para que recargue la vista de proyectos
+           *  si no estamos en ella
+           */
+          this.reloadProjects.emit()
+        }
+      },
+      error: () => {
+        const error: ApiResponse = {
+          status: 500,
+          message: 'global.error.500'
+        }
+        this.showProjectError(error)
       }
     })
   }

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="header">Top Employees</div>
+    <div class="row" *ngFor="let employee of topEmployees">
+        <div class="avatar">
+            <img [src]="employee.avatar" [alt]="employee.name" class="icon">
+            <div class="name">{{employee.name}}</div>
+        </div>
+        <div class="job">{{employee.job}}</div>
+        <div class="tasks">{{employee.tasks}} tasks</div>
+        <div class="points">{{employee.points}} pts</div>
+    </div>
+    <!-- <div class="row">
+        <div class="avatar">
+            <div class="icon"></div>
+            <div class="name">Anna F</div>
+        </div>
+        <div class="job">Frontend Engineer</div>
+        <div class="tasks">194 tasks</div>
+        <div class="points">1.230 pts</div>
+    </div>
+    <div class="row">
+        <div class="avatar">
+            <div class="icon"></div>
+            <div class="name">Marco D. G.</div>
+        </div>
+        <div class="job">Social Media</div>
+        <div class="tasks">180 tasks</div>
+        <div class="points">1.050 pts</div>
+    </div>
+    <div class="row">
+        <div class="avatar">
+            <div class="icon"></div>
+            <div class="name">Robert X</div>
+        </div>
+        <div class="job">Growth</div>
+        <div class="tasks">155 tasks</div>
+        <div class="points">880 pts</div>
+    </div>
+    <div class="row">
+        <div class="avatar">
+            <div class="icon"></div>
+            <div class="name">Cavin Petarson</div>
+        </div>
+        <div class="job">Manager</div>
+        <div class="tasks">138 tasks</div>
+        <div class="points">670 pts</div>
+    </div> -->
+</div>

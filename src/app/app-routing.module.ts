@@ -8,7 +8,7 @@ import { AuthGuard } from '@core/index'
 
 const routes: Routes = [
   {path: '', redirectTo:'login', pathMatch: 'full'},
-  {path: '', redirectTo:'layout', pathMatch: 'full'},
+  // {path: '', redirectTo:'layout/tasks', pathMatch: 'full'},
   { 
     path: '', 
     loadChildren: () => import('@modules/authentication/authentication.module').then(m => m.AuthenticationModule) 

@@ -13,9 +13,14 @@ import { ToastModule } from 'primeng/toast'
 import { DynamicDialogModule } from 'primeng/dynamicdialog'
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { CalendarModule } from 'primeng/calendar'
+import { ProgressBarModule } from 'primeng/progressbar'
+import { NgChartsModule } from 'ng2-charts';
+import { LeadingZerosPipe } from './modules/util/pipes/leading-zeros.pipe';
+import { ParseTimePipe } from './modules/util/pipes/parse-time.pipe'
 
 @NgModule({
-  declarations: [TranslationPipe],
+  declarations: [TranslationPipe, LeadingZerosPipe, ParseTimePipe],
   imports: [
     CommonModule,
     SharedRoutingModule,
@@ -25,7 +30,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner'
     ToastModule        ,
     DynamicDialogModule,
     ConfirmDialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CalendarModule,
+    ProgressBarModule,
+    NgChartsModule
   ],
   exports: [
     CommonModule,
@@ -34,10 +42,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner'
     HttpClientModule,
     ReactiveFormsModule,
     TranslationPipe,
+    LeadingZerosPipe,
     ToastModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CalendarModule,
+    ProgressBarModule,
+    NgChartsModule
   ]
 })
 export class SharedModule { }

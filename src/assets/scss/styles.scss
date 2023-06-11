@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 /* Estilos generales */ 
 *{
@@ -59,26 +60,7 @@ a:active {
 }
 
 .app-input{
-    padding: .5rem .9rem;
-    background-color: $light;
-    border: 1px solid $secondary-color;
-    outline: none;
-    font-size: 0.9em;
-    border-radius: .5rem;
-    color: $text-primary;
-    height: 2.5rem;
-
-    &::placeholder{
-      color: $secondary-color;
-    }
-
-    &:focus{
-      border: 2px solid $primary-color;
-    }    
-
-    &:disabled{
-      color: $secondary-color;
-    }
+    @include app-input;
 }
 
 .app-textarea{

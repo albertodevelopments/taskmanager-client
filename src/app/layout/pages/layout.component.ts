@@ -10,7 +10,7 @@ import { Pages } from '@layout/index'
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
 
@@ -47,5 +47,18 @@ export class LayoutComponent {
         this.router.navigate(['layout/dashboard'])
         break
     }
+  }
+
+  reloadProjectsView(){
+    this.router.navigate(['/layout'], {skipLocationChange: true}).then(() => {
+      this.menuOption(this.PagesEnum.PROJECTS)      
+    })
+  }
+
+  /** PENDIENTE DE IMPLEMENTAR (PROBABLEMENTE CON STORE) */
+  reloadTasksView(){
+    this.router.navigate(['/layout'], {skipLocationChange: true}).then(() => {
+      this.menuOption(this.PagesEnum.TASKS)
+    })
   }
 }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="container-header">
-        <svg class='add-task' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg">
+        <svg class='add-task' width="37" height="37" viewBox="0 0 37 37"  xmlns="http://www.w3.org/2000/svg" (click)="openTaskWindow()">
             <rect class='rect1' width="37" height="37" rx="9" />
             <rect class='rect2' x="18" y="11" width="2" height="15"/>
             <rect class='rect3' x="26" y="18" width="2" height="15" transform="rotate(90 26 18)" />
@@ -8,13 +8,28 @@
     </div>
     <div class="row header">
         <div class="header-cell number">#</div>
-        <div class="header-cell name">Task name</div>
-        <div class="header-cell tags">Task tags</div>
-        <div class="header-cell hours">Hours</div>
-        <div class="header-cell assigned">Assigned to</div>
-        <div class="header-cell due">Due date</div>
+        <div class="header-cell name">{{'tasks.task.name.label' | translate}}</div>
+        <div class="header-cell tags">{{'tasks.task.tags.label' | translate}}</div>
+        <div class="header-cell hours">{{'tasks.task.time.label' | translate}}</div>
+        <div class="header-cell assigned">{{'tasks.task.assigned.to.label' | translate}}</div>
+        <div class="header-cell due">{{'tasks.task.due.date.label' | translate}}</div>
     </div>
-    <div class="table">
+    <app-tasks-list
+        [status]="pendingStatus"
+        (complete)="completeTask($event)"
+        (addTask)="addNewTask($event)"
+    ></app-tasks-list>
+    <app-tasks-list
+        [status]="inProgressStatus"
+        (complete)="completeTask($event)"
+        (addTask)="addNewTask($event)"
+    ></app-tasks-list>
+    <app-tasks-list
+        [status]="reviewStatus"
+        (complete)="completeTask($event)"
+        (addTask)="addNewTask($event)"
+    ></app-tasks-list>
+    <!-- <div class="table">
         <div class="row">
             <div class="th number">
                 <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,8 +182,8 @@
             <div class="td assigned"></div>
             <div class="td due"></div>
         </div>
-    </div>
-    <div class="table">
+    </div> -->
+    <!-- <div class="table">
         <div class="row">
             <div class="th number">
                 <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -312,8 +327,8 @@
             <div class="td assigned"></div>
             <div class="td due"></div>
         </div>
-    </div>
-    <div class="table">
+    </div> -->
+    <!-- <div class="table">
         <div class="row">
             <div class="th number">
                 <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -457,5 +472,17 @@
             <div class="td assigned"></div>
             <div class="td due"></div>
         </div>
-    </div>
+    </div> -->
 </div>
+<app-task
+    *ngIf="taskWindowOpen && showTaskWindowCondition && priorities && priorities.length > 0"
+    [employeesList]="employeesList"
+    [projectsList]="projectsList"
+    [priorities]="priorities"
+    [employeeJob]="userJob"
+    [status]="curretStatus"
+    [canCloseWindow]="closingTaskWindow$"
+    (save)="saveTask($event)"
+    (close)="closeTaskWindow()"
+></app-task>
+<p-toast></p-toast>

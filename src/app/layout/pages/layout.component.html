@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header
+    (reloadProjects)="reloadProjectsView()"
+></app-header>
 <app-menu
     [currentPage]="currentPage"
     (selectMenuOption)="menuOption($event)"

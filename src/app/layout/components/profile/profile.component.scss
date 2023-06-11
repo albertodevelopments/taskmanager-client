@@ -23,8 +23,10 @@
         border-radius: .5rem;
         padding: 1rem 2rem 2rem 2rem;
         animation: show .6s ease-in-out forwards;        
-        transition: transform .4s ease-in-out;
+        transition: transform .4s ease-in-out, opacity .2s ease-in-out;
         --scale: scale(1);
+        --opacity: 1;
+        opacity: var(--opacity);
         transform: var(--scale);
 
         .title{
@@ -59,6 +61,17 @@
             flex-direction: column;
             gap: .75rem;
             margin-bottom: 1rem;
+
+            .row{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+
+                .select--error{
+                    border-bottom: 2px solid $red;
+                    margin-bottom: -2px;
+                }
+            }
         }
 
         .footer{
@@ -70,6 +83,7 @@
 
     .profile-form--hide{
         --scale: scale(0);
+        --opacity: 0;
     }
 }
 

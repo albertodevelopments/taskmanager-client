@@ -1,0 +1,8 @@
+<div class="container">
+    <img [src]="img" alt="KPI users" class="kpi-icon">
+    <div class="title">{{ label | translate }}</div>
+    <div class="figures">{{total}}</div>
+    <div class="month-pct">
+        <span class="pct">+{{percentThisMonth}}%</span><span class="text">This month</span>
+    </div>
+</div>

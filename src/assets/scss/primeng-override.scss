@@ -1,0 +1,38 @@
+@import 'variables';
+@import 'mixins';
+
+.p-calendar{
+    padding: 0;    
+
+    .p-inputtext{
+        @include app-input;
+    }
+
+    .p-inputtext:enabled:hover{
+        border-color: $secondary-color;
+    }
+
+    .p-inputtext:enabled:focus{
+        box-shadow: unset;
+        border: 2px solid $primary-color;
+    }        
+}
+
+.app-input-calendar--error > .p-calendar > .p-inputtext{
+    border-color: $secondary-color;
+
+    :focus{
+        border-color: $primary-color;
+    }
+    outline: 2px solid $red;
+}
+
+.dashboard-progress > .p-progressbar{
+    margin-top: .25rem;
+    height: .75rem;
+    background-color: $background;
+
+    .p-progressbar-value{
+        background-color: $primary-color;
+    }
+}

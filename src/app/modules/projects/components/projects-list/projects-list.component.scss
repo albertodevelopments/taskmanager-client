@@ -1,0 +1,22 @@
+@import 'variables';
+
+.section{
+    .header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 1.2em;
+        gap: .25rem;
+
+        .number{
+            color: $secondary-color;
+        }
+    }
+
+    .body{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="title">{{ 'dashboard.tasks.status' | translate }}</div>
+  <div class="graph">
+    <canvas baseChart
+      [labels]="['dashboard.tasks.pending' | translate, 
+               'dashboard.tasks.in.progress' | translate,
+               'dashboard.tasks.in.review' | translate,
+               'dashboard.tasks.completed' | translate]"
+      [datasets]="datasets"
+      [options]="chartOptions"
+      [legend]="false"
+      [type]="'doughnut'">
+    </canvas>
+  </div>
+  <div class="summary">
+    <div class="summary-item">
+      <div class="box pending"></div>
+      <div class="figure">{{pendingPercent}}%</div>
+      <span class="label">{{'dashboard.tasks.pending' | translate}}</span>
+    </div>
+    <div class="summary-item">
+      <div class="box in-progress"></div>
+      <div class="figure">{{inProgressPercent}}%</div>  
+      <span class="label">{{'dashboard.tasks.in.progress' | translate}}</span>
+    </div>
+    <div class="summary-item">
+      <div class="box in-review"></div>
+      <div class="figure">{{inReviewPercent}}%</div>
+      <span class="label">{{'dashboard.tasks.in.review' | translate}}</span>
+    </div>
+    <div class="summary-item">
+      <div class="box  completed"></div>
+      <div class="figure">{{completedPercent}}%</div>
+      <span class="label">{{'dashboard.tasks.completed' | translate}}</span>
+    </div>
+  </div>
+</div>

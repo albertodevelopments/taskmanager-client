@@ -1,3 +1,7 @@
 export { TasksComponent } from '@modules/tasks/pages/tasks/tasks.component'
+export { TaskComponent } from '@modules/tasks/components/task/task.component'
+export { TasksListComponent } from '@modules/tasks/components/tasks-list/tasks-list.component'
+export { TaskInterface } from '@modules/tasks/interfaces/task.interface'
+export { TasksService } from '@modules/tasks/services/tasks.service'
 export { TasksRoutingModule } from '@modules/tasks/tasks-routing.module'
 export { TasksModule } from '@modules/tasks/tasks.module'

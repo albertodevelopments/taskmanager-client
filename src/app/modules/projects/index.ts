@@ -1,5 +1,7 @@
 export { ProjectsComponent } from '@modules/projects/pages/projects/projects.component'
 export { ProjectComponent } from '@modules/projects/components/project/project.component'
+export { ProjectCardComponent } from '@modules/projects/components/project-card/project-card.component'
+export { ProjectsListComponent } from '@modules/projects/components/projects-list/projects-list.component'
 export { Project } from '@modules/projects/interfaces/project.interface'
 export { ProjectsRoutingModule } from '@modules/projects/projects-routing.module'
 export { ProjectsService } from '@modules/projects/services/projects.service'

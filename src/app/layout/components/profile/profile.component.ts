@@ -1,15 +1,16 @@
 /** Angular core */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Observable, Subscription } from 'rxjs'
+import { Observable, Subscription, take } from 'rxjs'
 
 /** Estado global */
 import { Store } from '@ngrx/store'
 
 /** App imports */
-import { Employee } from '@core/index'
+import { Employee, getLocalTeams } from '@core/index'
 import { fromProfileSelectors } from '@store/index'
 import { TranslationPipe } from '@shared/index'
+import { teams } from '@core/index'
 
 /** Librerías */
 import { ConfirmationService } from 'primeng/api'
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
   protected avatar$: Observable<string>
   private previousLanguage: string
   protected closingWindow: boolean
+  protected teams: any[]
 
   /** Para suscribirse al observable en el padre de cierre de la ventata */  
   private closingWindowSubscription: Subscription
@@ -44,12 +46,14 @@ export class ProfileComponent implements OnInit, OnDestroy{
   ){
     this.profileForm = this.formBuilder.group({
       email: new FormControl({value: '', disabled: true}),
-      username: new FormControl('', Validators['required']),
-      job: new FormControl('', Validators['required']),
+      username: new FormControl('', [Validators.required]),
+      job: new FormControl('', [Validators.required]),
       points: new FormControl({value: 0, disabled: true}),
       rol: new FormControl(''),
-      language: new FormControl(''),
+      team: new FormControl(null, [Validators.required]),
+      language: new FormControl('', [Validators.required]),
     })
+    this.teams = []
     this.previousLanguage = ''
     this.currentEmployee = null
     this.avatar$ = this.store.select(fromProfileSelectors.avatar)
@@ -59,6 +63,12 @@ export class ProfileComponent implements OnInit, OnDestroy{
     this.closingWindow = false
     this.canCloseWindow = new Observable<void>
     this.closingWindowSubscription = new Subscription()
+    this.teams = teams    
+    this.store.select(fromProfileSelectors.language)
+    .pipe(take(1))
+    .subscribe(language => {
+      this.teams = getLocalTeams(language)
+    })
   }
 
   ngOnInit(): void {
@@ -82,6 +92,10 @@ export class ProfileComponent implements OnInit, OnDestroy{
     return this.profileForm.get('language') as FormControl
   }
 
+  get team(): FormControl{
+    return this.profileForm.get('team') as FormControl
+  }
+
   getCurrentEmployee(): void {
 
     if(this.currentEmployee === null) return
@@ -96,6 +110,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
       points: this.currentEmployee.points,
       rol: this.currentEmployee.rol,
       language: this.currentEmployee.language,
+      team: this.currentEmployee.team === 0 ? null : this.currentEmployee.team
     })
   }
 
@@ -111,7 +126,8 @@ export class ProfileComponent implements OnInit, OnDestroy{
       name: this.username.value,
       job: this.job.value,
       rol: this.rol.value,
-      language: this.language.value
+      language: this.language.value,
+      team: this.team.value
     }
 
     if(this.previousLanguage !== this.language.value){

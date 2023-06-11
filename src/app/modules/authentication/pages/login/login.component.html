@@ -3,8 +3,7 @@
         <div class="image-container">
             <img src="assets/img/app-image.png" alt="App image" class="app-image">
         </div>
-        <div 
-            class="login-box">    
+        <div class="login-box">    
             <div class="header">
                 <!-- <div class="select-wrapper">
                     <select class="app-select language" (change)="selectLanguage($event)">
@@ -17,9 +16,11 @@
             </div>
             <app-signin 
                 (sendMessage)="showSignInNotification($event)"
+                (initApp)="initApp($event)"
                 *ngIf="view === 'L'"></app-signin>            
             <app-signup 
                 (sendMessage)="showRegisterNotification($event)"
+                (initApp)="initApp($event)"
                 *ngIf="view === 'R'"></app-signup>
         </div>
     </div>

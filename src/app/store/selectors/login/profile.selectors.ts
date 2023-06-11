@@ -26,3 +26,18 @@ export const username = createSelector(
   profileState,
   (profileState) => profileState.avatar
 )
+
+export const language = createSelector(
+  profileState,
+  (profileState) => profileState.language
+)
+
+export const uidAndJob = createSelector(
+  profileState,
+  (profileState) => {
+    return{
+      uid: profileState.uid,
+      job: profileState.job
+    }
+  }
+)

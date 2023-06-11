@@ -4,5 +4,6 @@ export interface Registration {
     'password': string,
     'job': string,
     'genre': string,
-    'language': string
+    'language': string,
+    'team': number
 }

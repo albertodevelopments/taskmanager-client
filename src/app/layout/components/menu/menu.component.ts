@@ -21,7 +21,7 @@ export class MenuComponent {
     private router: Router
   ){
     this.selectMenuOption = new EventEmitter<number>()
-    this.currentPage = this.PagesEnum.PROJECTS
+    this.currentPage = this.PagesEnum.DASHBOARD
     this.router.navigate(['layout/dashboard'])
   }
 

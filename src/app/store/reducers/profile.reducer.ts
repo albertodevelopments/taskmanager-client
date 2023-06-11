@@ -11,7 +11,8 @@ const initialState: ProfileState = {
     name: '',
     job: '',
     uid: '',
-    avatar: ''
+    avatar: '',
+    language: ''
 }
 
 export const profileReducer = createReducer(
@@ -23,19 +24,23 @@ export const profileReducer = createReducer(
        fromProfilePageActions.userLoadingFailed,
        fromProfilePageActions.updatingUser,
        fromProfilePageActions.userUpdatingFailed,
+       fromRegisterPageActions.updatingUser,
+       fromRegisterPageActions.userUpdatingFailed,
         (currentState: ProfileState) => currentState),
     on(
         fromProfilePageActions.userLoaded,
         fromSigninPageActions.userLoaded,
         fromRegisterPageActions.userLoaded,
         fromProfilePageActions.userUpdated,
+        fromRegisterPageActions.userUpdated,
         (currentState: ProfileState, action) => {
             return{
                 ...currentState,
                 name: action.newProfile.name,
                 job: action.newProfile.job,
                 uid: action.newProfile.uid,
-                avatar: action.newProfile.avatar
+                avatar: action.newProfile.avatar,
+                language: action.newProfile.language
             }
         }
     ),

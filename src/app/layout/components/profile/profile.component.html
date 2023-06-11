@@ -27,40 +27,54 @@
                     *ngIf="(username.touched || username.dirty) && username.errors?.['required']"
                     class="error-message">{{ 'employee.error.name.required' | translate }}</small>
             </div>
-            <div class="input-group">
-                <label for="job" class="input-label large">{{ 'employee.label.job' | translate }}</label>
-                <input 
-                    formControlName="job"
-                    type="text" 
-                    class="app-input large"
-                    [ngClass]="{'app-input--error': (job.touched || job.dirty) && !job.valid}">
-                <small 
-                    *ngIf="(job.touched || job.dirty) && job.errors?.['required']"
-                    class="error-message">{{ 'employee.error.job.required' | translate }}</small>
+            <div class="row">
+                <div class="input-group">
+                    <label for="job" class="input-label">{{ 'employee.label.job' | translate }}</label>
+                    <input 
+                        formControlName="job"
+                        type="text" 
+                        class="app-input"
+                        [ngClass]="{'app-input--error': (job.touched || job.dirty) && !job.valid}">
+                    <small 
+                        *ngIf="(job.touched || job.dirty) && job.errors?.['required']"
+                        class="error-message">{{ 'employee.error.job.required' | translate }}</small>
+                </div>
+                <div class="input-group">
+                    <label for="points" class="input-label">{{ 'employee.label.points' | translate }}</label>
+                    <input 
+                        formControlName="points"
+                        type="text" 
+                        class="app-input">
+                </div>
             </div>
-            <div class="input-group">
-                <label for="points" class="input-label large">{{ 'employee.label.points' | translate }}</label>
-                <input 
-                    formControlName="points"
-                    type="text" 
-                    class="app-input large">
-            </div>
-            <div class="input-group">
-                <label for="rol" class="input-label large">{{ 'employee.label.rol' | translate }}</label>
-                <input 
-                    formControlName="rol"
-                    type="text" 
-                    class="app-input large">
-            </div>
-            <div class="input-group">
-                <label for="language" class="input-label large">{{ 'employee.label.language' | translate }}</label>
+            <div class="row">
+                <div class="input-group">
+                    <label for="rol" class="input-label">{{ 'employee.label.rol' | translate }}</label>
+                    <input 
+                        formControlName="rol"
+                        type="text" 
+                        class="app-input">
+                </div>
+                <div class="input-group">
+                    <label for="language" class="input-label large">{{ 'employee.label.language' | translate }}</label>
                 <select 
                     formControlName="language"
-                    name="language" 
                     class="app-select large">
                     <option value="en">{{ 'label.language.english' | translate }}</option>
                     <option value="es">{{ 'label.language.spanish' | translate }}</option>
                 </select>
+                </div>        
+            </div>
+            <div class="input-group">
+                <label for="genre" class="select-label">{{ 'employee.label.team' | translate }}</label>
+                <select 
+                    id="team"
+                    formControlName="team" 
+                    class="app-select select large"
+                    [ngClass]="{'select--error': (team.dirty || team.touched) && team.invalid}">
+                    <option *ngFor="let team of teams" [ngValue]="team.id">{{team.name}}</option>
+                </select>
+                <small *ngIf="(team.dirty || team.touched) && team.errors?.['required']" class="error-message">{{ 'employee.error.team.required' | translate }}</small>
             </div>        
         </div>
         <div class="footer">

@@ -1,0 +1,68 @@
+@import 'variables';
+
+.card{
+    background-color: #fff;
+    border-radius: .25rem;
+    padding: 1rem;
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .75rem;
+
+        .text{
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .number{
+            color: $secondary-color;
+        }
+    }
+
+    .description{
+        font-size: 0.8em;
+        color: $secondary-color;    
+        margin-bottom: 0.75rem;
+    }
+
+    .tags{
+        display: flex;
+        gap: .5rem;
+
+        .tag{           
+            font-size: 0.7em;
+            padding: .45rem .8rem;
+            border-radius: .25rem;
+            margin-bottom: 0.75rem;
+        }
+    }
+
+    .footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .comments{
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: $secondary-color;
+        }
+
+        .people{
+            display: flex;
+            list-style-type: none;
+
+            .avatar{
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                background-color: lightcoral;
+            }
+
+            li:not(:last-child){
+                margin-right: -1rem;
+            }
+        }
+    }
+}

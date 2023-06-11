@@ -1,0 +1,16 @@
+<div class="section">
+    <div class="header">
+        <h2 class="title">{{'project.todo.label' | translate}}</h2>
+        <span class="number">({{projectsInInProgressStatus}})</span>
+    </div>
+    <div class="body">
+        <app-project-card 
+            *ngFor="let project of listOfTODOProjects"
+            [project]="project"
+        ></app-project-card>
+        <app-project-card 
+            *ngFor="let project of listOfInProgressProjects"
+            [project]="project"
+        ></app-project-card>
+    </div>
+</div>

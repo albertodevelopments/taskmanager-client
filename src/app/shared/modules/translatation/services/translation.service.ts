@@ -40,8 +40,6 @@ export class TranslationService {
             resolve()
           },
           error: err => {
-            console.log(err);
-            
             console.error('Error al cargar el fichero de traducciones');
             reject()
           }

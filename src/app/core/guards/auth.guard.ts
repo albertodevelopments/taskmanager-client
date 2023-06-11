@@ -10,14 +10,14 @@ import { Observable, take } from 'rxjs';
 export class AuthGuard implements CanLoad {
 
   private isLoggedIn$: Observable<boolean>
-  private token: Observable<string>
+  private _token$: Observable<string>
 
   constructor(
     private store: Store,
     private router: Router
   ){
     this.isLoggedIn$ = this.store.select(fromAuthSelectors.isLoggedIn)
-    this.token = this.store.select(fromAuthSelectors.token)
+    this._token$ = this.store.select(fromAuthSelectors.token)
   }
 
   canLoad(

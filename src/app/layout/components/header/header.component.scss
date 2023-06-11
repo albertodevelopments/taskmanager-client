@@ -69,11 +69,15 @@
     }
 
     .user-section{
-        width: 13rem;
+        width: 14rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-right: 1rem;
+
+        .name{
+            font-weight: 600;
+        }
 
         .avatar{
             border-radius: 50%;

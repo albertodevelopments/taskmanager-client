@@ -1,13 +1,12 @@
 /** Angular core */
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, take } from 'rxjs';
+import { catchError, Observable, of, take } from 'rxjs';
 
 /** App imports */
-import { Credentials, Registration } from '@modules/authentication';
+import { Credentials, Registration } from '@modules/authentication'
 import { environment } from '@env/environment'
-import { ApiResponse, Employee } from '@core/index';
-import { LayoutService } from '@layout/index';
+import { ApiResponse } from '@core/index'
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,7 @@ import { LayoutService } from '@layout/index';
 export class AuthenticationService {
 
   constructor(
-    private http: HttpClient,
-    private layoutService: LayoutService
+    private http: HttpClient    
   ) {
   }
 
@@ -57,13 +55,8 @@ export class AuthenticationService {
     .pipe(
       take(1),
       catchError((httpError: HttpErrorResponse) => {
-        console.error(httpError)
-
         const { error } = httpError
-        return of({
-          'status': error.status,
-          'message': error.message
-        })
+        return of(error)
       })
     )
   }
@@ -74,39 +67,17 @@ export class AuthenticationService {
     return this.http.get<ApiResponse>(url)
     .pipe(
       take(1),
-      map((response: ApiResponse) => {
-        return {
-          'status': response.status,
-          'message': response.message
-        }
-        
-      }),
       catchError((httpError: HttpErrorResponse) => {
         const {error} = httpError
-        return of({
-          'status': error.status,
-          'message': error.message
-        })
+        return of(error)
       })
     )
   }
 
-  fetchAvatarUrl(employee: Employee): void{
+  fetchAvatarUrl(genre: string): Observable<any>{
     /** Obtenemos un avatar aleatorio de un API público */
-    const url = `${environment.AVATARS_URL}/api/?gender=${employee.genre}`
-
-    this.http.get(url).subscribe((response: any) => {
-
-      const employeeWithAvatar = {
-        ...employee,
-        avatar: response.results[0].picture.medium
-      }
-
-      /** Grabamos el avatar en el registro del empleado */
-      this.layoutService.updateEmployee(employeeWithAvatar).subscribe((response: ApiResponse) => {
-        console.log(response)
-      })
-    })
+    const url = `${environment.AVATARS_URL}/api/?gender=${genre}`
+    return this.http.get<any>(url).pipe(take(1))
   }
 
 }

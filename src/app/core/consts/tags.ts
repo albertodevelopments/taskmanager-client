@@ -2,7 +2,7 @@ import { TagIDs } from "@core/index"
 
 export const tags = [
     {
-        id: TagIDs.IOS_APP,
+        id: TagIDs.MOBILE,
         name: "iOs App",
         /** Naranja */
         color: "#ff9f38",
@@ -15,38 +15,45 @@ export const tags = [
         color: "#60b158", 
         background: "#e8efe4"
     },
-    /** Lila */
     {
-        id: TagIDs.ANDROID,
+        id: TagIDs.SALES,
         name: "Android",
+        /** Lila */
         color: "#545dad",
         background: "#eeeff7"
     },
-    /** Azul claro */
     {
         id: TagIDs.BRANDING,
         name: "Branding",
+        /** Azul claro */
         color: "#64cbf4",
         background: "#64cbf433"
     },
-    /** Azul oscuro */
     {
         id: TagIDs.PHP,
         name: "PHP",
+        /** Azul oscuro */
         color: "#377dff",
         background: "#eff2f4"
     },
-    /** Lavanda */
     {
-        id: TagIDs.ANGULAR,
-        name: "Angular",
+        id: TagIDs.BUSINESS,
+        name: "Business",
+        /** Lavanda */
         color: "#a07dda",
         background: "#f6f2fc"
     },
-    /** Azul oscuro */
     {
         id: TagIDs.REACT,
         name: "React",
+        /** Azul oscuro */
+        color: "#ffa700",
+        background: "#f8eedc"
+    },
+    {
+        id: TagIDs.DATABASE,
+        name: "Database",
+        /** Amarillo */
         color: "#ffa700",
         background: "#f8eedc"
     }

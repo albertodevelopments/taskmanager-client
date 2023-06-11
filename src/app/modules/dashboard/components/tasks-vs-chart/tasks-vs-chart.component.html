@@ -1,0 +1,16 @@
+<span class="container">
+  <div class="title">{{'dashboard.tasks.vs.title' | translate }}</div>
+  <canvas baseChart
+    [labels]="['dashboard.tasks.completed' | translate, 'dashboard.tasks.not.completed' | translate]"
+    [datasets]="datasets"
+    [options]="chartOptions"
+    [legend]="false"
+    [type]="'doughnut'">
+  </canvas>
+  <span class="label">
+    <div class="figure">
+      {{percent}}%
+    </div>
+    <div class="text">Completed</div>     
+  </span>
+</span>

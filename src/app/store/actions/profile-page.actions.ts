@@ -1,6 +1,8 @@
 /** Angular */
-import { ProfileState } from "@core/index"
 import { createAction, props } from "@ngrx/store"
+
+/** App imports */
+import { ProfileState } from "@core/index"
 
 export const loadingUser = createAction('[Profile Page] Loading User')
 

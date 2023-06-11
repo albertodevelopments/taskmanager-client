@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="kpi" *ngFor="let teamKpi of teamsArray">
+         <div class="title">{{teamKpi.name}}</div>
+         <div class="figures">{{teamKpi.total}}</div>
+         <span class="text">Employees</span>
+         <p-progressBar class="dashboard-progress" [value]="teamKpi.progress" [showValue]="false"></p-progressBar>
+    </div>
+ </div>

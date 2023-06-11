@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 /** App imports */
 import { SharedModule } from '@shared/index'
-import { ProjectsRoutingModule, ProjectComponent, ProjectsComponent } from '@modules/projects'
+import { ProjectsRoutingModule, ProjectComponent, ProjectsComponent, ProjectsListComponent, ProjectCardComponent } from '@modules/projects';
 
 @NgModule({
   declarations: [
     ProjectsComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectCardComponent,
+    ProjectsListComponent
   ],
   imports: [
     CommonModule,

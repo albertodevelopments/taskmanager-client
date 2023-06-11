@@ -10,8 +10,6 @@ export interface LoginState {
     profileState: ProfileState
 }
 
-export const loginStateFeatureKey = 'loginReducers'
-
 export const loginReducers: ActionReducerMap<LoginState> = {
     authState: authReducer,
     profileState: profileReducer

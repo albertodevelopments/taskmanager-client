@@ -1,0 +1,31 @@
+@import 'variables';
+
+.container{
+    display: flex;
+    gap: 1rem;
+
+    .kpi{
+        min-width: 15rem;
+        background-color: #fff;
+        border-radius: .25rem;
+        padding: 1rem;            
+        flex-wrap: wrap;
+
+        .title{
+            font-weight: 600;
+            font-size: 0.7em;
+            margin-bottom: 1rem;
+        }
+
+        .figures{
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .text{
+            color: $secondary-color;
+            font-size: 0.7em;
+            margin-top: 0.15rem;
+        }
+    }
+}

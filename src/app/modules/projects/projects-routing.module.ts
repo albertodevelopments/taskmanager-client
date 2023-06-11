@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
 /** App imports */
-import { ProjectsComponent, ProjectComponent } from '@modules/projects'
+import { ProjectsComponent } from '@modules/projects'
 
 const routes: Routes = [
   {path: '', component: ProjectsComponent, pathMatch: 'full'}
